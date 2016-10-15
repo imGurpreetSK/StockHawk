@@ -119,19 +119,19 @@ public class StockTaskService extends GcmTaskService {
             try {
                 getResponse = fetchData(urlString);
 //                if (getResponse.equals(String.valueOf(GcmNetworkManager.RESULT_SUCCESS))) {
-                    result = GcmNetworkManager.RESULT_SUCCESS;
-                    try {
-                        ContentValues contentValues = new ContentValues();
-                        // update ISCURRENT to 0 (false) so new data is current
-                        if (isUpdate) {
-                            contentValues.put(QuoteColumns.ISCURRENT, 0);
-                            mContext.getContentResolver().update(QuoteProvider.Quotes.CONTENT_URI, contentValues,
-                                    null, null);
-                        }
-                        mContext.getContentResolver().applyBatch(QuoteProvider.AUTHORITY, Utils.quoteJsonToContentVals(getResponse));
-                    } catch (RemoteException | OperationApplicationException e) {
-                        Log.e(LOG_TAG, "Error applying batch insert", e);
+                result = GcmNetworkManager.RESULT_SUCCESS;
+                try {
+                    ContentValues contentValues = new ContentValues();
+                    // update ISCURRENT to 0 (false) so new data is current
+                    if (isUpdate) {
+                        contentValues.put(QuoteColumns.ISCURRENT, 0);
+                        mContext.getContentResolver().update(QuoteProvider.Quotes.CONTENT_URI, contentValues,
+                                null, null);
                     }
+                    mContext.getContentResolver().applyBatch(QuoteProvider.AUTHORITY, Utils.quoteJsonToContentVals(getResponse));
+                } catch (RemoteException | OperationApplicationException e) {
+                    Log.e(LOG_TAG, "Error applying batch insert", e);
+                }
               /*  }else{
                     Toast.makeText(mContext, R.string.no_such_stock_found, Toast.LENGTH_SHORT).show();
                 }*/

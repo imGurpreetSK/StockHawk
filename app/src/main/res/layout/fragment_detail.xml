@@ -1,13 +1,65 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="com.sam_chordas.android.stockhawk.ui.DetailFragment">
+    android:orientation="vertical">
 
-    <TextView
+    <android.support.v7.widget.GridLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/detail_textview" />
+        android:layout_weight="2"
+        app:columnCount="3"
+        app:rowCount="2">
+
+        <TextView
+            android:id="@+id/price_textview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="temp"
+            app:layout_columnSpan="2"
+            app:layout_rowSpan="2" />
+
+        <TextView
+            android:id="@+id/change_textview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="temp" />
+
+        <TextView
+            android:id="@+id/percent_change_textview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="temp" />
+
+    </android.support.v7.widget.GridLayout>
+
+    <android.support.v7.widget.GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="3"
+        app:columnCount="2"
+        app:rowCount="4">
+
+        <TextView
+            android:id="@+id/name_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/high_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/low_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/open_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </android.support.v7.widget.GridLayout>
 
 </LinearLayout>

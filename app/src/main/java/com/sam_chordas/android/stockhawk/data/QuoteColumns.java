@@ -16,6 +16,9 @@ public class QuoteColumns {
     @DataType(DataType.Type.TEXT)
     @NotNull
     public static final String SYMBOL = "symbol";
+//    @DataType(DataType.Type.TEXT)
+//    @NotNull
+//    public static final String NAME = "name";
     @DataType(DataType.Type.TEXT)
     @NotNull
     public static final String PERCENT_CHANGE = "percent_change";

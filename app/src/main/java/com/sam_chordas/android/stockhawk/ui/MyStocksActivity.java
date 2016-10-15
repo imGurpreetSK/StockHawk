@@ -55,23 +55,20 @@ public class MyStocksActivity extends AppCompatActivity implements LoaderManager
     private Cursor mCursor;
     boolean isConnected;
 
+    public static final String LOG_TAG = "tag";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mContext = this;
-        ConnectivityManager cm =
-                (ConnectivityManager) mContext.getSystemService(Context.CONNECTIVITY_SERVICE);
-
-        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
-        isConnected = activeNetwork != null &&
-                activeNetwork.isConnectedOrConnecting();
+        isConnected = Utils.isNetworkConected(mContext);
         setContentView(R.layout.activity_my_stocks);
         // The intent service is for executing immediate pulls from the Yahoo API
         // GCMTaskService can only schedule tasks, they cannot execute immediately
         mServiceIntent = new Intent(this, StockIntentService.class);
         if (savedInstanceState == null) {
             // Run the initialize task service so that some stocks appear upon an empty database
-            mServiceIntent.putExtra("tag", "init");
+            mServiceIntent.putExtra(LOG_TAG, "init");
             if (isConnected) {
                 startService(mServiceIntent);
             } else {
@@ -94,7 +91,7 @@ public class MyStocksActivity extends AppCompatActivity implements LoaderManager
                             bundle.putString(QuoteColumns.PERCENT_CHANGE, mCursor.getString(mCursor.getColumnIndex(QuoteColumns.PERCENT_CHANGE)));
                             bundle.putString(QuoteColumns.CHANGE, mCursor.getString(mCursor.getColumnIndex(QuoteColumns.CHANGE)));
                             bundle.putString(QuoteColumns.BIDPRICE, mCursor.getString(mCursor.getColumnIndex(QuoteColumns.BIDPRICE)));
-//                            bundle.putString(QuoteColumns.CREATED, mCursor.getString(mCursor.getColumnIndex(QuoteColumns.CREATED)));
+//                            bundle.putString(QuoteColumns.NAME, mCursor.getString(mCursor.getColumnIndex(QuoteColumns.NAME)));
                             bundle.putInt(QuoteColumns.ISUP, mCursor.getInt(mCursor.getColumnIndex(QuoteColumns.ISUP)));
 //                            bundle.putInt(QuoteColumns.ISCURRENT, mCursor.getInt(mCursor.getColumnIndex(QuoteColumns.ISCURRENT)));
                             Intent intent = new Intent(mContext, DetailActivity.class);
@@ -128,15 +125,14 @@ public class MyStocksActivity extends AppCompatActivity implements LoaderManager
                                             new String[]{QuoteColumns.SYMBOL}, QuoteColumns.SYMBOL + "= ?",
                                             new String[]{input.toString()}, null);
                                     if (c != null && c.getCount() != 0) {
-                                        Toast toast = Toast.makeText(MyStocksActivity.this, "This stock is already saved!", Toast.LENGTH_LONG);
+                                        Toast toast = Toast.makeText(MyStocksActivity.this, R.string.stock_already_present, Toast.LENGTH_LONG);
                                         toast.setGravity(Gravity.CENTER, Gravity.CENTER, 0);
                                         toast.show();
                                         c.close();
                                     } else {
                                         // Add the stock to DB
-                                        //TODO: check for existence here
-                                        mServiceIntent.putExtra("tag", "add");
-                                        mServiceIntent.putExtra("symbol", input.toString());
+                                        mServiceIntent.putExtra(LOG_TAG, "add");
+                                        mServiceIntent.putExtra(QuoteColumns.SYMBOL, input.toString());
                                         startService(mServiceIntent);
                                     }
 

@@ -33,16 +33,15 @@ public class DetailFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View v = inflater.inflate(R.layout.fragment_detail, container, false);
-        temp = (TextView) v.findViewById(R.id.detail_textview);
+//        temp = (TextView) v.findViewById(R.id.detail_textview);
 //        currentValue = data.getInt(QuoteColumns.ISCURRENT);
         isUp = data.getInt(QuoteColumns.ISUP);
         bidPrice = data.getString(QuoteColumns.BIDPRICE);
         change = data.getString(QuoteColumns.CHANGE);
         companySymbol = data.getString(QuoteColumns.SYMBOL);
         percentChange = data.getString(QuoteColumns.PERCENT_CHANGE);
-//        created = data.getString(QuoteColumns.CREATED);
 
-        temp.setText(companySymbol);
+//        temp.setText(companySymbol);
 
         return v;
 
