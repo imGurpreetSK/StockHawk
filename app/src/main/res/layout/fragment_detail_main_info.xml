@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tool="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    app:columnCount="2"
+    app:rowCount="4">
+
+    <android.support.v4.widget.Space
+        android:layout_height="60dp"
+        app:layout_columnSpan="2" />
+
+    <TextView
+        android:id="@+id/last_price_textview"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:gravity="center"
+        android:text="temp"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/text_size_huge"
+        app:layout_columnWeight="2"
+        app:layout_gravity="fill_horizontal"
+        app:layout_rowSpan="2"
+        tool:fontFamily="sans-serif-condensed" />
+
+    <TextView
+        android:id="@+id/change_textview"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:gravity="start"
+        android:text="temp"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="@dimen/text_size_big"
+        app:layout_columnWeight="1"
+        app:layout_gravity="fill_horizontal"
+        tool:fontFamily="sans-serif" />
+
+    <TextView
+        android:id="@+id/percent_change_textview"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:gravity="start"
+        android:text="temp"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="@dimen/text_size_medium"
+        app:layout_columnWeight="1"
+        app:layout_gravity="fill_horizontal"
+        tool:fontFamily="sans-serif-medium" />
+
+    <android.support.v4.widget.Space
+        android:layout_height="30dp"
+        app:layout_columnSpan="2" />
+
+</android.support.v7.widget.GridLayout>

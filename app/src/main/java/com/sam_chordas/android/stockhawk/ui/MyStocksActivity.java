@@ -15,6 +15,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.text.InputType;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -23,6 +24,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.sam_chordas.android.stockhawk.R;
 import com.sam_chordas.android.stockhawk.data.QuoteColumns;
 import com.sam_chordas.android.stockhawk.data.QuoteProvider;
@@ -36,6 +43,9 @@ import com.google.android.gms.gcm.PeriodicTask;
 import com.google.android.gms.gcm.Task;
 import com.melnykov.fab.FloatingActionButton;
 import com.sam_chordas.android.stockhawk.touch_helper.SimpleItemTouchHelperCallback;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class MyStocksActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
 
@@ -54,6 +64,7 @@ public class MyStocksActivity extends AppCompatActivity implements LoaderManager
     private Context mContext;
     private Cursor mCursor;
     boolean isConnected;
+    Bundle data;
 
     public static final String LOG_TAG = "tag";
 
@@ -61,6 +72,7 @@ public class MyStocksActivity extends AppCompatActivity implements LoaderManager
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mContext = this;
+        data = new Bundle();
         isConnected = Utils.isNetworkConected(mContext);
         setContentView(R.layout.activity_my_stocks);
         // The intent service is for executing immediate pulls from the Yahoo API
@@ -86,17 +98,8 @@ public class MyStocksActivity extends AppCompatActivity implements LoaderManager
                     public void onItemClick(View v, int position) {
                         if (isConnected) {
                             mCursor.moveToPosition(position);
-                            Bundle bundle = new Bundle();
-                            bundle.putString(QuoteColumns.SYMBOL, mCursor.getString(mCursor.getColumnIndex(QuoteColumns.SYMBOL)));
-                            bundle.putString(QuoteColumns.PERCENT_CHANGE, mCursor.getString(mCursor.getColumnIndex(QuoteColumns.PERCENT_CHANGE)));
-                            bundle.putString(QuoteColumns.CHANGE, mCursor.getString(mCursor.getColumnIndex(QuoteColumns.CHANGE)));
-                            bundle.putString(QuoteColumns.BIDPRICE, mCursor.getString(mCursor.getColumnIndex(QuoteColumns.BIDPRICE)));
-//                            bundle.putString(QuoteColumns.NAME, mCursor.getString(mCursor.getColumnIndex(QuoteColumns.NAME)));
-                            bundle.putInt(QuoteColumns.ISUP, mCursor.getInt(mCursor.getColumnIndex(QuoteColumns.ISUP)));
-//                            bundle.putInt(QuoteColumns.ISCURRENT, mCursor.getInt(mCursor.getColumnIndex(QuoteColumns.ISCURRENT)));
-                            Intent intent = new Intent(mContext, DetailActivity.class);
-                            intent.putExtra(getString(R.string.string_bundle_extra), bundle);
-                            startActivity(intent);
+                            String symbol = mCursor.getString(mCursor.getColumnIndex(QuoteColumns.SYMBOL));
+                            fetchData(symbol);
                         } else {
                             networkToast();
                         }
@@ -238,6 +241,58 @@ public class MyStocksActivity extends AppCompatActivity implements LoaderManager
     @Override
     public void onLoaderReset(Loader<Cursor> loader) {
         mCursorAdapter.swapCursor(null);
+    }
+
+    private void fetchData(String companySymbol) {
+
+        //https://query.yahooapis.com/v1/public/yql?q=select * from yahoo.finance.quotes where symbol = "goog"&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys
+
+        RequestQueue queue = Volley.newRequestQueue(this);
+        String url = "http://empyrean-aurora-455.appspot.com/service.php?quote=yes&symbol=" + companySymbol;
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
+                new Response.Listener<JSONObject>() {
+
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+
+//                            String[] name = response.getString("Name").split("");
+                            data.putString("NAME", response.getString("Name"));
+                            data.putString("LAST_PRICE", response.getString("LastPrice"));
+                            data.putString("CHANGE", response.getString("Change"));
+                            String s = response.getString("ChangePercent") + "%";
+                            data.putString("CHANGE_PERCENT", s);
+                            data.putString("HIGH", response.getString("High"));
+                            data.putString("LOW", response.getString("Low"));
+                            data.putString("OPEN", response.getString("Open"));
+
+                            startDetailActivity();
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+
+                new Response.ErrorListener() {
+
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.e(LOG_TAG, error.toString());
+                        Toast.makeText(mContext, R.string.error_fetching_data, Toast.LENGTH_SHORT).show();
+                    }
+                });
+        request.setTag(LOG_TAG);
+        queue.add(request);
+
+
+
+    }
+
+    private void startDetailActivity() {
+        Intent intent = new Intent(mContext, DetailActivity.class);
+        intent.putExtra(getString(R.string.string_bundle_extra), data);
+        startActivity(intent);
     }
 
 }

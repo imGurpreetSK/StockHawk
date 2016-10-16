@@ -9,14 +9,11 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.sam_chordas.android.stockhawk.R;
-import com.sam_chordas.android.stockhawk.data.QuoteColumns;
 
 public class DetailFragment extends Fragment {
 
-    Bundle data;
-    String bidPrice, change, companySymbol, percentChange;
-    int currentValue, isUp;
-    TextView temp;
+    TextView TVlastPrice, TVchange, TVpercentChange, TVname, TVopenValue, TVhighValue, TVlowValue;
+    private static final String TAG = "DetailFragment";
 
     public DetailFragment() {
         // Required empty public constructor
@@ -25,26 +22,41 @@ public class DetailFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        data = getArguments();
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         View v = inflater.inflate(R.layout.fragment_detail, container, false);
-//        temp = (TextView) v.findViewById(R.id.detail_textview);
-//        currentValue = data.getInt(QuoteColumns.ISCURRENT);
-        isUp = data.getInt(QuoteColumns.ISUP);
-        bidPrice = data.getString(QuoteColumns.BIDPRICE);
-        change = data.getString(QuoteColumns.CHANGE);
-        companySymbol = data.getString(QuoteColumns.SYMBOL);
-        percentChange = data.getString(QuoteColumns.PERCENT_CHANGE);
-
-//        temp.setText(companySymbol);
-
+        getHandles(v);
+        Bundle data = getArguments();
+        setValues(data);
         return v;
 
+    }
+
+    private void setValues(Bundle data) {
+
+        TVname.setText(data.getString("NAME"));
+        TVchange.setText(data.getString("CHANGE"));
+        TVpercentChange.setText(data.getString("CHANGE_PERCENT"));
+        TVhighValue.setText(data.getString("HIGH"));
+        TVlowValue.setText(data.getString("LOW"));
+        TVopenValue.setText(data.getString("OPEN"));
+        TVlastPrice.setText(data.getString("LAST_PRICE"));
+
+    }
+
+    public void getHandles(View v) {
+        TVname = (TextView) v.findViewById(R.id.name_value_textview);
+        TVchange = (TextView) v.findViewById(R.id.change_textview);
+        TVpercentChange = (TextView) v.findViewById(R.id.percent_change_textview);
+        TVopenValue = (TextView) v.findViewById(R.id.open_value_textview);
+        TVlowValue = (TextView) v.findViewById(R.id.low_value_textview);
+        TVlastPrice = (TextView) v.findViewById(R.id.last_price_textview);
+        TVhighValue = (TextView) v.findViewById(R.id.high_value_textview);
     }
 
 
