@@ -27,4 +27,14 @@
     <string name="key_open" translatable="false">OPEN</string>
     <string name="key_symbol" translatable="false">SYMBOL</string>
 
+    <!--description strings-->
+    <string name="webview_content_description">Graphical representation of the stocks of selected company</string>
+    <string name="floating_button_content_description">Button to add new stocks based on the requirements</string>
+
+    <!--textview text strings in fragment_detail_extra_info.xml-->
+    <string name="name">Name</string>
+    <string name="high">High</string>
+    <string name="low">Low</string>
+    <string name="open">Open</string>
+
 </resources>

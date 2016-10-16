@@ -2,4 +2,5 @@
     android:id="@+id/graphWebView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:contentDescription="@string/webview_content_description"
     android:background="@android:color/black" />

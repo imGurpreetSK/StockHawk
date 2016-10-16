@@ -30,7 +30,7 @@
             android:paddingLeft="@dimen/padding_left"
             android:paddingRight="@dimen/padding_right"
             android:paddingStart="@dimen/padding_left"
-            android:text="Name"
+            android:text="@string/name"
             android:textSize="@dimen/text_size_medium_small"
             app:layout_columnWeight="1"
             app:layout_gravity="fill_horizontal" />
@@ -63,7 +63,7 @@
             android:paddingLeft="@dimen/padding_left"
             android:paddingRight="@dimen/padding_right"
             android:paddingStart="@dimen/padding_left"
-            android:text="High"
+            android:text="@string/high"
             android:textSize="@dimen/text_size_medium_small"
             app:layout_columnWeight="1"
             app:layout_gravity="fill_horizontal" />
@@ -96,7 +96,7 @@
             android:paddingLeft="@dimen/padding_left"
             android:paddingRight="@dimen/padding_right"
             android:paddingStart="@dimen/padding_left"
-            android:text="Low"
+            android:text="@string/low"
             android:textSize="@dimen/text_size_medium_small"
             app:layout_columnWeight="1"
             app:layout_gravity="fill_horizontal" />
@@ -129,7 +129,7 @@
             android:paddingLeft="@dimen/padding_left"
             android:paddingRight="@dimen/padding_right"
             android:paddingStart="@dimen/padding_left"
-            android:text="Open"
+            android:text="@string/open"
             android:textSize="@dimen/text_size_medium_small"
             app:layout_columnWeight="1"
             app:layout_gravity="fill_horizontal" />
