@@ -36,7 +36,13 @@ public class DetailFragment extends Fragment {
 
     private void setValues(Bundle data) {
 
-        TVname.setText(data.getString(getString(R.string.key_name)));
+        try {
+            String[] name = data.getString(getString(R.string.key_name)).split(" ");
+            TVname.setText(name[0]);
+        }catch (Exception e){
+            e.printStackTrace();
+            TVname.setText(data.getString(getString(R.string.key_name)));
+        }
         TVchange.setText(data.getString(getString(R.string.key_change)));
         TVpercentChange.setText(data.getString(getString(R.string.key_change_percent)));
         TVhighValue.setText(data.getString(getString(R.string.key_high)));

@@ -60,14 +60,11 @@ public class DetailActivity extends AppCompatActivity {
                 case 0:
                     DetailFragment detailFragment = new DetailFragment();
                     detailFragment.setArguments(data);
-//                    getSupportFragmentManager()
-//                            .beginTransaction()
-//                            .replace(R.id.detail_fragment_container, detailFragment)
-//                            .commit();
                     return detailFragment;
                 case 1:
-                    return new GraphFragment();
-
+                    GraphFragment graphFragment = new GraphFragment();
+                    graphFragment.setArguments(data);
+                    return graphFragment;
             }
             return null;
 

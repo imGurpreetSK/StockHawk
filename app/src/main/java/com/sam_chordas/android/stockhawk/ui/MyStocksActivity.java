@@ -8,6 +8,8 @@ import android.content.Loader;
 import android.database.Cursor;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.ActionBar;
 import android.os.Bundle;
@@ -243,7 +245,7 @@ public class MyStocksActivity extends AppCompatActivity implements LoaderManager
         mCursorAdapter.swapCursor(null);
     }
 
-    private void fetchData(String companySymbol) {
+    private void fetchData(final String companySymbol) {
 
         //https://query.yahooapis.com/v1/public/yql?q=select * from yahoo.finance.quotes where symbol = "goog"&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys
 
@@ -263,6 +265,7 @@ public class MyStocksActivity extends AppCompatActivity implements LoaderManager
                             data.putString(getString(R.string.key_high), response.getString("High"));
                             data.putString(getString(R.string.key_low), response.getString("Low"));
                             data.putString(getString(R.string.key_open), response.getString("Open"));
+                            data.putString(getString(R.string.key_symbol), companySymbol);
                             startDetailActivity();
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -285,7 +288,11 @@ public class MyStocksActivity extends AppCompatActivity implements LoaderManager
     private void startDetailActivity() {
         Intent intent = new Intent(mContext, DetailActivity.class);
         intent.putExtra(getString(R.string.string_bundle_extra), data);
-        startActivity(intent);
+
+        ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(this);
+        ActivityCompat.startActivity(this, intent, activityOptionsCompat.toBundle());
+
+//        startActivity(intent);
     }
 
 }

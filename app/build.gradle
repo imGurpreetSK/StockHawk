@@ -44,5 +44,6 @@ dependencies {
     compile 'com.jakewharton:butterknife:8.4.0'
     apt 'net.simonvt.schematic:schematic-compiler:0.6.3'
     compile 'com.astuetz:pagerslidingtabstrip:1.0.1'
+    compile 'com.diogobernardino:williamchart:2.2'
 
 }

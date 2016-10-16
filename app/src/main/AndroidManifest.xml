@@ -6,6 +6,7 @@
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-feature android:name="android.hardware.screen.portrait" />
 
     <permission
         android:name="com.google.android.gcm.demo.permission.C2D_MESSAGE"
@@ -17,10 +18,12 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+
         android:theme="@style/AppTheme">
         <activity
             android:name=".ui.MyStocksActivity"
-            android:label="@string/app_name">
+            android:label="@string/app_name"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -44,7 +47,8 @@
             android:exported="false" />
 
         <activity android:name=".ui.DetailActivity"
-            android:parentActivityName=".ui.MyStocksActivity">
+            android:parentActivityName=".ui.MyStocksActivity"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui.MyStocksActivity" />
