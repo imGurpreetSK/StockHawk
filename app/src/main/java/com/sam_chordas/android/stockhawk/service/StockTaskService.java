@@ -32,6 +32,8 @@ import java.net.URLEncoder;
 public class StockTaskService extends GcmTaskService {
     private String LOG_TAG = StockTaskService.class.getSimpleName();
 
+    public static final String ACTION_DATA_UPDATED = "com.sam_chordas.android.stockhawk.DATA_UPDATED";
+
     private OkHttpClient client = new OkHttpClient();
     private Context mContext;
     private StringBuilder mStoredSymbols = new StringBuilder();

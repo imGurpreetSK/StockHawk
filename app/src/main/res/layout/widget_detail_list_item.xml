@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/widget_list_item"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/touch_selector_white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:minHeight="?android:attr/listPreferredItemHeight"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/abc_list_item_padding_horizontal_material"
+        android:paddingRight="@dimen/abc_list_item_padding_horizontal_material">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="7"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/widget_stock_rate_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                android:textColor="@color/textPrimary" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/widget_high_temperature"
+            android:layout_width="@dimen/widget_listitem_margin"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginEnd="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:fontFamily="sans-serif-light"
+            android:gravity="end"
+            android:textColor="@color/textPrimary"
+            android:textSize="@dimen/text_size_medium"
+            tools:text="10" />
+
+        <TextView
+            android:id="@+id/widget_low_temperature"
+            android:layout_width="@dimen/widget_listitem_margin"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="sans-serif-light"
+            android:gravity="end"
+            android:textColor="@color/textLight"
+            android:textSize="@dimen/text_size_medium_small"
+            tools:text="7" />
+
+    </LinearLayout>
+</FrameLayout>

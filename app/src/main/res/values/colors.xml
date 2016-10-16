@@ -7,4 +7,7 @@
   <color name="accent">#00C853</color>
   <color name="colorPrimary">#2196F3</color>
   <color name="colorPrimaryDark">#1976D2</color>
+  <color name="colorPrimaryLight">#FFFFFF</color>
+  <color name="textPrimary">#000000</color>
+  <color name="textLight">#000000</color>
 </resources>

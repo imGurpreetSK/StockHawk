@@ -37,5 +37,7 @@
     <string name="low">Low</string>
     <string name="open">Open</string>
     <string name="ok">OK</string>
+    <string name="empty_forecast_list">No data available</string>
+    <string name="symbol_label">LABEL</string>
 
 </resources>

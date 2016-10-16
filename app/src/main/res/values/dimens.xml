@@ -23,6 +23,10 @@
     <!--widget dimensions-->
     <dimen name="min_widget_height">110dp</dimen>
     <dimen name="min_widget_width">110dp</dimen>
+    <dimen name="min_widget_resize_width">40dp</dimen>
+    <dimen name="min_widget_resize_height">100dp</dimen>
+    <dimen name="widget_margin">16dp</dimen>
+    <dimen name="widget_listitem_margin">38dp</dimen>
 
 
 </resources>

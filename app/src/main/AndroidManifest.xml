@@ -53,6 +53,24 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui.MyStocksActivity" />
         </activity>
+
+        <receiver
+            android:name="com.sam_chordas.android.stockhawk.widget.StockHawkWidgetProvider"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
+                <action android:name="com.sam_chordas.android.stockhawk.DATA_UPDATED"/>
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget"/>
+        </receiver>
+        <service
+            android:name="com.sam_chordas.android.stockhawk.widget.StockHawkWidgetRemoteViewsService"
+            android:permission="android.permission.BIND_REMOTEVIEWS"
+            android:exported="false"/>
+
+
     </application>
 
 </manifest>
