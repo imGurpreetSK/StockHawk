@@ -7,15 +7,15 @@ This will involve finding and handling error cases, adding accessibility feature
 
 # Learning Outcomes
 * Diagnosing existing issues with an app
-* Make an app accessible to sight-impaired users
-* Allow app to be localized for distribution in other countries
-* Handle error cases in Android
-* Add a widget to enhance user experience
+* Making an app accessible to sight-impaired users
+* Allowing app to be localized for distribution in other countries
+* Handling error cases in Android
+* Adding widgets to enhance user experience
 
 # [Screenshots](https://github.com/GurpreetSK95/StockHawk/tree/master/Screenshots)
 
-![Alt text](/Screenshots/Screenshot_1476638221.png?raw=true "MainActivity")
-
-![Alt text](/Screenshots/Screenshot_1476638216.png?raw=true "Widget")
-
-![Alt text](/Screenshots/Screenshot_1476638242.png?raw=true "Stock Information")
+<p align="center">
+  <img src="/Screenshots/Screenshot_1476638221.png?" width="350"/>
+  <img src="Screenshots/Screenshot_1476638216.png" width="350"/>
+  <img src="/Screenshots/Screenshot_1476638242.png" width="350"/>
+</p>
