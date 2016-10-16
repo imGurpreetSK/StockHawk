@@ -36,10 +36,10 @@ public class DetailActivity extends AppCompatActivity {
 
     }
 
-    @Override
-    public void onBackPressed() {
-        startActivity(new Intent(this, MyStocksActivity.class));
-    }
+//    @Override
+//    public void onBackPressed() {
+//        finish();
+//    }
 
     public class MyFragmentPagerAdapter extends FragmentPagerAdapter {
         private String tabTitles[] = new String[] { "Information", "Graph"};

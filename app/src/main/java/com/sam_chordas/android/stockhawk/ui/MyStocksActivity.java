@@ -53,7 +53,7 @@ public class MyStocksActivity extends AppCompatActivity implements LoaderManager
     private Intent mServiceIntent;
     private ItemTouchHelper mItemTouchHelper;
     private static final int CURSOR_LOADER_ID = 0;
-    private static final String BASE_URL = "http://empyrean-aurora-455.appspot.com/service.php?quote=yes&symbol=" ;
+    private static final String BASE_URL = "http://empyrean-aurora-455.appspot.com/service.php?quote=yes&symbol=";
     private QuoteCursorAdapter mCursorAdapter;
     private Context mContext;
     private Cursor mCursor;
@@ -115,22 +115,27 @@ public class MyStocksActivity extends AppCompatActivity implements LoaderManager
                             .contentColor(getResources().getColor(R.color.colorPrimary))
                             .input(R.string.input_hint, R.string.input_prefill, new MaterialDialog.InputCallback() {
                                 @Override
-                                public void onInput(MaterialDialog dialog, CharSequence input) {
+                                public void onInput(MaterialDialog dialog, CharSequence inputs) {
                                     // On FAB click, receive user input. Make sure the stock doesn't already exist
                                     // in the DB and proceed accordingly
-                                    Cursor c = getContentResolver().query(QuoteProvider.Quotes.CONTENT_URI,
-                                            new String[]{QuoteColumns.SYMBOL}, QuoteColumns.SYMBOL + "= ?",
-                                            new String[]{input.toString()}, null);
-                                    if (c != null && c.getCount() != 0) {
-                                        Toast toast = Toast.makeText(MyStocksActivity.this, R.string.stock_already_present, Toast.LENGTH_LONG);
-                                        toast.setGravity(Gravity.CENTER, Gravity.CENTER, 0);
-                                        toast.show();
-                                        c.close();
-                                    } else {
-                                        // Add the stock to DB
-                                        mServiceIntent.putExtra(LOG_TAG, "add");
-                                        mServiceIntent.putExtra(QuoteColumns.SYMBOL, input.toString());
-                                        startService(mServiceIntent);
+//                                    String input = userInput.toString().toUpperCase();
+                                    String[] inputArray = inputs.toString().toUpperCase().trim().split(",");
+                                    for (String input : inputArray) {
+                                        input = input.trim();
+                                        Cursor c = getContentResolver().query(QuoteProvider.Quotes.CONTENT_URI,
+                                                new String[]{QuoteColumns.SYMBOL}, QuoteColumns.SYMBOL + "= ?",
+                                                new String[]{input}, null);
+                                        if (c != null && c.getCount() != 0) {
+                                            Toast toast = Toast.makeText(MyStocksActivity.this, R.string.stock_already_present, Toast.LENGTH_LONG);
+                                            toast.setGravity(Gravity.CENTER, Gravity.CENTER, 0);
+                                            toast.show();
+                                            c.close();
+                                        } else {
+                                            // Add the stock to DB
+                                            mServiceIntent.putExtra(LOG_TAG, "add");
+                                            mServiceIntent.putExtra(QuoteColumns.SYMBOL, input);
+                                            startService(mServiceIntent);
+                                        }
                                     }
                                 }
                             })
@@ -247,8 +252,6 @@ public class MyStocksActivity extends AppCompatActivity implements LoaderManager
     }
 
     private void fetchData(final String companySymbol) {
-
-        //https://query.yahooapis.com/v1/public/yql?q=select * from yahoo.finance.quotes where symbol = "goog"&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys
 
         RequestQueue queue = Volley.newRequestQueue(this);
         String url = BASE_URL + companySymbol;
