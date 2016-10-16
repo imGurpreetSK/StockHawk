@@ -11,9 +11,21 @@
     <string name="input_prefill"></string>
     <string name="network_toast">Uh-oh! This app requires an internet connection</string>
 
-
-    <string name="string_bundle_extra">DATA_INFO</string>
+    <!--app strings-->
     <string name="no_such_stock_found">No such stock exists</string>
     <string name="stock_already_present">This stock is already saved!</string>
     <string name="error_fetching_data">Couldn\'t fetch data.\nPlease try again later.</string>
+
+    <!--keys and other non-translatable strings-->
+    <string name="string_bundle_extra" translatable="false">DATA_INFO</string>
+    <string name="key_name" translatable="false">NAME</string>
+    <string name="key_last_price" translatable="false">LAST_PRICE</string>
+    <string name="key_change" translatable="false">CHANGE</string>
+    <string name="key_change_percent" translatable="false">CHANGE_PERCENT</string>
+    <string name="key_high" translatable="false">HIGH</string>
+    <string name="key_low" translatable="false">LOW</string>
+    <string name="key_open" translatable="false">OPEN</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

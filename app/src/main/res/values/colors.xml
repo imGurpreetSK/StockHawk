@@ -5,4 +5,5 @@
   <color name="material_red_700">#D50000</color>
   <color name="material_green_700">#00C853</color>
   <color name="accent">#00C853</color>
+  <color name="colorPrimary">#2196F3</color>
 </resources>

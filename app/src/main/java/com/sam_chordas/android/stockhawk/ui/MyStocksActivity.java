@@ -48,7 +48,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class MyStocksActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
-
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
      */
@@ -60,6 +59,7 @@ public class MyStocksActivity extends AppCompatActivity implements LoaderManager
     private Intent mServiceIntent;
     private ItemTouchHelper mItemTouchHelper;
     private static final int CURSOR_LOADER_ID = 0;
+    private static final String BASE_URL = "http://empyrean-aurora-455.appspot.com/service.php?quote=yes&symbol=" ;
     private QuoteCursorAdapter mCursorAdapter;
     private Context mContext;
     private Cursor mCursor;
@@ -248,32 +248,27 @@ public class MyStocksActivity extends AppCompatActivity implements LoaderManager
         //https://query.yahooapis.com/v1/public/yql?q=select * from yahoo.finance.quotes where symbol = "goog"&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys
 
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url = "http://empyrean-aurora-455.appspot.com/service.php?quote=yes&symbol=" + companySymbol;
+        String url = BASE_URL + companySymbol;
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
 
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
-
-//                            String[] name = response.getString("Name").split("");
-                            data.putString("NAME", response.getString("Name"));
-                            data.putString("LAST_PRICE", response.getString("LastPrice"));
-                            data.putString("CHANGE", response.getString("Change"));
+                            data.putString(getString(R.string.key_name), response.getString("Name"));
+                            data.putString(getString(R.string.key_last_price), response.getString("LastPrice"));
+                            data.putString(getString(R.string.key_change), response.getString("Change"));
                             String s = response.getString("ChangePercent") + "%";
-                            data.putString("CHANGE_PERCENT", s);
-                            data.putString("HIGH", response.getString("High"));
-                            data.putString("LOW", response.getString("Low"));
-                            data.putString("OPEN", response.getString("Open"));
-
+                            data.putString(getString(R.string.key_change_percent), s);
+                            data.putString(getString(R.string.key_high), response.getString("High"));
+                            data.putString(getString(R.string.key_low), response.getString("Low"));
+                            data.putString(getString(R.string.key_open), response.getString("Open"));
                             startDetailActivity();
-
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
                     }
                 },
-
                 new Response.ErrorListener() {
 
                     @Override
@@ -284,8 +279,6 @@ public class MyStocksActivity extends AppCompatActivity implements LoaderManager
                 });
         request.setTag(LOG_TAG);
         queue.add(request);
-
-
 
     }
 

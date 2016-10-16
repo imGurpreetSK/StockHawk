@@ -13,6 +13,7 @@
     <dimen name="text_size_medium">34sp</dimen>
     <dimen name="text_size_medium_small">30sp</dimen>
     <dimen name="text_size_small">18sp</dimen>
+    <dimen name="text_size_tiny">14sp</dimen>
 
 
     <!-- Per the design guidelines, navigation drawers should be between 240dp and 320dp:

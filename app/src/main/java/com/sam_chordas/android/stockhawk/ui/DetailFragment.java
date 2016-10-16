@@ -15,15 +15,12 @@ public class DetailFragment extends Fragment {
     TextView TVlastPrice, TVchange, TVpercentChange, TVname, TVopenValue, TVhighValue, TVlowValue;
     private static final String TAG = "DetailFragment";
 
-    public DetailFragment() {
-        // Required empty public constructor
-    }
+    public DetailFragment() {}
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -39,13 +36,13 @@ public class DetailFragment extends Fragment {
 
     private void setValues(Bundle data) {
 
-        TVname.setText(data.getString("NAME"));
-        TVchange.setText(data.getString("CHANGE"));
-        TVpercentChange.setText(data.getString("CHANGE_PERCENT"));
-        TVhighValue.setText(data.getString("HIGH"));
-        TVlowValue.setText(data.getString("LOW"));
-        TVopenValue.setText(data.getString("OPEN"));
-        TVlastPrice.setText(data.getString("LAST_PRICE"));
+        TVname.setText(data.getString(getString(R.string.key_name)));
+        TVchange.setText(data.getString(getString(R.string.key_change)));
+        TVpercentChange.setText(data.getString(getString(R.string.key_change_percent)));
+        TVhighValue.setText(data.getString(getString(R.string.key_high)));
+        TVlowValue.setText(data.getString(getString(R.string.key_low)));
+        TVopenValue.setText(data.getString(getString(R.string.key_open)));
+        TVlastPrice.setText(data.getString(getString(R.string.key_last_price)));
 
     }
 
