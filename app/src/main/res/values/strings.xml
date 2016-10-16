@@ -36,5 +36,6 @@
     <string name="high">High</string>
     <string name="low">Low</string>
     <string name="open">Open</string>
+    <string name="ok">OK</string>
 
 </resources>
