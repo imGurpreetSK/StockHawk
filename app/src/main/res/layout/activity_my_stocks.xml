@@ -1,7 +1,8 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:fab="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@android:color/white">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view"
@@ -16,7 +17,7 @@
         android:layout_margin="16dp"
         android:contentDescription="@string/floating_button_content_description"
         android:src="@drawable/ic_add_white_24dp"
-        fab:fab_colorNormal="@color/colorPrimary"
+        fab:fab_colorNormal="@color/accent"
         fab:fab_colorPressed="@color/colorPrimaryDark"
         fab:fab_colorRipple="@color/ripple"
         fab:fab_shadow="true"

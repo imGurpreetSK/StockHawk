@@ -6,7 +6,6 @@
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-feature android:name="android.hardware.screen.portrait" />
 
     <permission
         android:name="com.google.android.gcm.demo.permission.C2D_MESSAGE"
@@ -22,8 +21,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".ui.MyStocksActivity"
-            android:label="@string/app_name"
-            android:screenOrientation="portrait">
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -46,9 +44,9 @@
             android:authorities="com.sam_chordas.android.stockhawk.data.QuoteProvider"
             android:exported="false" />
 
-        <activity android:name=".ui.DetailActivity"
-            android:parentActivityName=".ui.MyStocksActivity"
-            android:screenOrientation="portrait">
+        <activity
+            android:name=".ui.DetailActivity"
+            android:parentActivityName=".ui.MyStocksActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui.MyStocksActivity" />
@@ -58,17 +56,17 @@
             android:name="com.sam_chordas.android.stockhawk.widget.StockHawkWidgetProvider"
             android:label="@string/app_name">
             <intent-filter>
-                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
-                <action android:name="com.sam_chordas.android.stockhawk.DATA_UPDATED"/>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="com.sam_chordas.android.stockhawk.DATA_UPDATED" />
             </intent-filter>
             <meta-data
                 android:name="android.appwidget.provider"
-                android:resource="@xml/widget"/>
+                android:resource="@xml/widget" />
         </receiver>
         <service
             android:name="com.sam_chordas.android.stockhawk.widget.StockHawkWidgetRemoteViewsService"
-            android:permission="android.permission.BIND_REMOTEVIEWS"
-            android:exported="false"/>
+            android:exported="false"
+            android:permission="android.permission.BIND_REMOTEVIEWS" />
 
 
     </application>

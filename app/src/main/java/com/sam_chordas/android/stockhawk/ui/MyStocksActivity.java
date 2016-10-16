@@ -48,13 +48,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class MyStocksActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
-    /**
-     * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
-     */
 
-    /**
-     * Used to store the last screen title. For use in {@link #restoreActionBar()}.
-     */
     private CharSequence mTitle;
     private Intent mServiceIntent;
     private ItemTouchHelper mItemTouchHelper;
@@ -117,8 +111,8 @@ public class MyStocksActivity extends AppCompatActivity implements LoaderManager
                     new MaterialDialog.Builder(mContext).title(R.string.symbol_search)
                             .content(R.string.content_test)
                             .inputType(InputType.TYPE_CLASS_TEXT)
-                            .titleColor(getResources().getColor(R.color.accent))
-                            .contentColor(getResources().getColor(R.color.accent))
+                            .titleColor(getResources().getColor(R.color.colorPrimaryDark))
+                            .contentColor(getResources().getColor(R.color.colorPrimary))
                             .input(R.string.input_hint, R.string.input_prefill, new MaterialDialog.InputCallback() {
                                 @Override
                                 public void onInput(MaterialDialog dialog, CharSequence input) {
@@ -138,7 +132,6 @@ public class MyStocksActivity extends AppCompatActivity implements LoaderManager
                                         mServiceIntent.putExtra(QuoteColumns.SYMBOL, input.toString());
                                         startService(mServiceIntent);
                                     }
-
                                 }
                             })
                             .show();
@@ -215,7 +208,11 @@ public class MyStocksActivity extends AppCompatActivity implements LoaderManager
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            return true;
+            new MaterialDialog.Builder(mContext).title(R.string.app_name)
+                    .content(R.string.GURPREET)
+                    .titleColor(getResources().getColor(R.color.colorPrimaryDark))
+                    .contentColor(getResources().getColor(R.color.colorPrimary))
+                    .show();
         }
 
         if (id == R.id.action_change_units) {
@@ -295,8 +292,11 @@ public class MyStocksActivity extends AppCompatActivity implements LoaderManager
 
         ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(this);
         ActivityCompat.startActivity(this, intent, activityOptionsCompat.toBundle());
-
-//        startActivity(intent);
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
 }

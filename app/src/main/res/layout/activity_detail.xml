@@ -12,7 +12,7 @@
         android:background="@color/colorPrimary"
         android:textSize="@dimen/text_size_tiny"
         android:textColor="@android:color/white"
-        app:pstsIndicatorColor="@android:color/white"
+        app:pstsIndicatorColor="@color/accent"
         app:pstsIndicatorHeight="2dp"
         app:pstsShouldExpand="true"
         app:pstsTextAllCaps="true" />
