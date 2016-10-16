@@ -15,5 +15,5 @@
     <string name="string_bundle_extra">DATA_INFO</string>
     <string name="no_such_stock_found">No such stock exists</string>
     <string name="stock_already_present">This stock is already saved!</string>
-    <string name="error_fetching_data">Couldn't fetch data.\nPlease try again later.</string>
+    <string name="error_fetching_data">Couldn\'t fetch data.\nPlease try again later.</string>
 </resources>
