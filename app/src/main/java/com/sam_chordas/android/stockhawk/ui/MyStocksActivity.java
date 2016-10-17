@@ -122,6 +122,8 @@ public class MyStocksActivity extends AppCompatActivity implements LoaderManager
                                     String[] inputArray = inputs.toString().toUpperCase().trim().split(",");
                                     for (String input : inputArray) {
                                         input = input.trim();
+                                        if(input.length()>5 || !input.matches("[A-Z]+"))
+                                            continue;
                                         Cursor c = getContentResolver().query(QuoteProvider.Quotes.CONTENT_URI,
                                                 new String[]{QuoteColumns.SYMBOL}, QuoteColumns.SYMBOL + "= ?",
                                                 new String[]{input}, null);
